@@ -7,13 +7,13 @@ El detalle vive en `plan.md`._
 
 ## Qué vas a ver
 
-<Dos o tres frases. El resultado tangible cuando esté hecho: qué pasa en el WhatsApp, en el CRM,
-en la pantalla. Cuéntalo como se lo contarías al cliente.>
+<Dos o tres frases. El resultado tangible cuando esté hecho: qué pasa en el teléfono, en las
+listas, en la pantalla. Cuéntalo como se lo contarías a quien va a usar la app.>
 
 ## Qué toca
 
-- <Sistema — qué le cambia, en una línea. Ej.: «Respuesta del bot — contesta con voz si le hablaron».>
-- <Canal de WhatsApp · Herramientas del agente · HeyChat · Base de datos · Cola · API externa · Variables…>
+- <Sistema — qué le cambia, en una línea. Ej.: «Reparto — una descarga nueva entra sola a sus listas».>
+- <Análisis · Reparto · Inbox · Listas del reproductor · Almacenamiento del teléfono · Segundo plano · Ajustes…>
 
 ## Cómo lo compruebas
 
