@@ -20,4 +20,4 @@ listas, en la pantalla. Cuéntalo como se lo contarías a quien va a usar la app
 _Checks a mano, en orden. Se marcan al cumplirse; el plan no está hecho hasta que todos estén marcados._
 
 - [ ] <Haces X → ves Y.>
-- [ ] <Caso de error: haces X mal → el bot dice Z. Nunca silencio.>
+- [ ] <Caso de error: haces X mal → la app avisa Z. Nunca silencio.>

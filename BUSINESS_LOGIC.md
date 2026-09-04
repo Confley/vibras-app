@@ -10,3 +10,6 @@ por ahora en la bóveda de notas del autor, que es privada:
 
 Este repo solo apunta ahí; no copia las notas. Cuando el proyecto esté
 avanzado, las notas se mudarán a este repo.
+
+Si construyes sobre este repo sin acceso a esas notas y te falta una regla, abre un issue con
+la pregunta. El autor contesta ahí o trae la regla a este repo.

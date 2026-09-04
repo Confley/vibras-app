@@ -30,9 +30,7 @@ porque otro plan la va a volver a usar. El plan la enlaza desde su cabecera (`Do
 
 Rellena `constitution/` — misión, tech-stack, roadmap. Sin constitución no hay planes: es la
 referencia que ningún plan puede contradecir. Sustituye todo lo que esté entre `<…>` y borra las
-notas en _cursiva_. Al clonar el esqueleto para un cliente, `mission.md` y el roadmap se
-reescriben; los planes del chasis (001–005) se quedan como historia: explican por qué el código es
-como es.
+notas en _cursiva_.
 
 ## El ciclo de un plan
 

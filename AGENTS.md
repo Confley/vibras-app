@@ -8,5 +8,5 @@ aprueba el humano, `plan.md` lo lleva el agente— antes de código; la constitu
 **agent-first** (el humano dice qué, tú haces cómo) y **el sistema aprende** (alimenta `.claude/memory/`).
 
 Y una regla que se olvida siempre: todo lo que un humano tenga que configurar **fuera del código**
-(variable, migración, webhook, acceso) se anota en [`PUESTA-EN-PRODUCCION.md`](PUESTA-EN-PRODUCCION.md)
+(cuenta, permiso del sistema, ajuste, paso de instalación) se anota en [`PUESTA-EN-PRODUCCION.md`](PUESTA-EN-PRODUCCION.md)
 **en cuanto aparece**, nunca el día del despliegue.

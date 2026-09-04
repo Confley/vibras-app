@@ -14,20 +14,22 @@ Vienen de las notas del autor (ver `BUSINESS_LOGIC.md`); no se discuten en un pl
 
 - **Corre en un teléfono Android**, sin PC ni servidor. El análisis de audio se hace en el
   teléfono, en segundo plano.
-- **La música vive en el almacenamiento del teléfono**, en la carpeta que lee el reproductor
-  (hoy `/sdcard/YMusic/`). Tamaño de hoy: unas 1 150 canciones, 24 GB. Hay mezclas de una o dos
-  horas que cuentan como canciones normales.
+- **La música vive en el almacenamiento del teléfono**, en la carpeta que lee el reproductor.
+  Tamaño de hoy: alrededor de mil canciones. Hay mezclas de una o dos horas que cuentan como
+  canciones normales.
 - **El reproductor es YMusic**, y solo lee listas `.m3u8` que estén en su propia carpeta, con la
-  ruta absoluta completa de cada archivo. La app escribe ahí; no hay otra vía.
+  ruta absoluta completa de cada archivo. Así lo hacía la versión de PC; el primer plan lo vuelve a
+  comprobar. La app escribe ahí; no hay otra vía.
 - **La música nunca se modifica**: ni se mueve, ni se renombra, ni se reescribe.
-- **La app reproduce audio solo para que el usuario decida** desde el inbox: un pedazo, no un
-  reproductor completo.
+- **La app reproduce audio solo para que el usuario decida**, en el inbox y al elegir muestras:
+  lo justo para decidir, no un reproductor completo.
 - **Las descargas nuevas se detectan y se reparten solas**, sin confirmación.
 
 ## Qué tiene que responder el primer plan
 
 - Cómo se saca el patrón de una canción en el teléfono y cómo se mide el parecido con las
-  muestras de una categoría, con un umbral único ajustable.
+  muestras de una categoría, con un umbral de parecido ajustable (hoy uno solo; las notas dejan
+  abierto que sea por categoría).
 - Cuánto tarda y cuánta batería cuesta analizar la biblioteca entera de hoy, y una canción nueva.
 - Cómo se detectan descargas nuevas y cómo corre el análisis en segundo plano sin que el sistema
   lo mate.

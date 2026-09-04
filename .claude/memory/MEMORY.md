@@ -12,5 +12,8 @@ _(vacío — se llena en el instante que arreglas algo no obvio, o con /que-guar
 ## project/ — decisiones que no caben en ningún plan
 _(vacío — el estado de cada plan vive en su «Dónde vamos» (spec/planes/); aquí van decisiones no obvias)_
 
+## reference/ — punteros a recursos externos
+_(vacío — docs, tableros y repos que el proyecto usa)_
+
 ## Fichas de APIs y sistemas externos
-No viven aquí: van en `docs/` (se crea con la primera ficha) y los planes las enlazan.
+No viven aquí: van en `docs/apis/` con su línea en `docs/_indice.md` (se crean con la primera ficha). Son documentación que los planes enlazan.

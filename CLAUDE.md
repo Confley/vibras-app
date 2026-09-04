@@ -59,11 +59,12 @@ humano; no se resuelven por cuenta propia.
 
 Los nombres de las notas mandan también en el código y en los planes:
 
-- **analizar**: sacar el patrón de una canción.
-- **escuchar**: el usuario oye un pedazo para decidir.
+- **analizar**: sacar la huella de una canción.
+- **escuchar**: el usuario oye la canción para decidir.
 - **repartir**: meter cada canción en las categorías con las que encaja.
-- **escribir listas**: volcar cada categoría a la lista que lee el reproductor.
+- **escribir listas**: volcar cada categoría, ordenada por continuidad, a la lista que lee el
+  reproductor.
 - **asignar**: el usuario decide, desde el inbox, a dónde va una canción.
 
-**Categoría**, **muestra**, **excepción**, **inbox** y **umbral** tienen el sentido que les dan
+**Categoría**, **muestra**, **excepción**, **huella**, **patrón**, **inbox** y **umbral** tienen el sentido que les dan
 las notas. Si un nombre nuevo hace falta, se propone en el plan y se lleva a las notas.

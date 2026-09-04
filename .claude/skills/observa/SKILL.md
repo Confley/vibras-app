@@ -76,7 +76,5 @@ Un loop autónomo sin freno se va por el barranco. Obligatorio:
 ## Lo que NO es esto
 
 - No es `/verifica` (una sola vuelta, cerrada a mano por el humano). `/observa` es N vueltas vivas.
-- No es `/bucle-agentico` (eso fasea *construir* una feature; esto cierra el loop *contra una señal* mientras
-  pruebas o corriges). Se complementan: puedes usar `/observa` dentro de una fase para validar en vivo.
 - No es autonomía sin red. Sin criterio de parada y sin el guard del Paso 4, no es `/observa`: es un agente
   suelto, y eso lo tenemos prohibido.

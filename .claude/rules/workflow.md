@@ -23,7 +23,7 @@ Urdimbre fusiona dos ejes que no compiten:
 - **No** le pidas al humano que corra comandos ni que edite archivos. Tú lo haces; él aprueba.
 - Antes de construir, **mapea el contexto real** (lee el código, pega a la API real, revisa la DB).
   Nunca "supongo y construyo". La mayoría de los errores nacen de una suposición no verificada.
-- Si no estás seguro al 80%, **pregunta**. No inventes. (Si la duda es de fondo → `/ask-questions-if-underspecified`.)
+- Si no estás seguro al 80%, **pregunta**. No inventes. (Si la duda es de fondo → pregunta en el plan (o al humano) antes de suponer.)
 - Cada error que arreglas se **documenta una vez** para que no vuelva a pasar (ver §5).
 
 ---
@@ -54,7 +54,7 @@ cambio concreto que estás por hacer. **Si dudas entre dos tiers, sube uno.**
 | **TRIVIAL**  | Copy, bump, comentario, rename, formato                                               | Hazlo. Punto.                                                                                                |
 | **SIMPLE**   | 1 archivo, bug aislado, una función, un endpoint sin efectos                          | Hazlo + valida (`typecheck`/`build`/correr lo afectado). Si hay tests que cubren lo que tocaste, correrlos no es opcional. |
 | **MODERADO** | Toca varias capas/archivos, integración nueva                                         | Ejecuta mapeando **contexto real** antes de cada paso. Valida de punta a punta.                             |
-| **CRÍTICO**  | Dinero, auth, datos de usuario, migraciones, contratos externos, borrado masivo, prod | **`/verifica`** (ejerce el path REAL) + **`/adversarial-review`** (sesión aparte) + `/que-guardar`.          |
+| **CRÍTICO**  | Dinero, auth, datos de usuario, migraciones, contratos externos, borrado masivo, prod; escribir o borrar en la carpeta del reproductor; cualquier acceso a archivos de música que no sea lectura | **`/verifica`** (ejerce el path REAL) + **`/adversarial-review`** (sesión aparte) + `/que-guardar`.          |
 
 **El 80% de los cambios es TRIVIAL/SIMPLE.** Ahí ganas velocidad. La ceremonia cara (verifica +
 adversarial) **solo** se gasta en CRÍTICO. No infles tiers "por si acaso": esa es la trampa que
