@@ -1,0 +1,70 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git branch *)",
+      "Read(.env.example)",
+      "Write(.env.example)",
+      "Edit(.env.example)",
+      "Read(**/.env.example)",
+      "Write(**/.env.example)",
+      "Edit(**/.env.example)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(**/.env)",
+      "Read(.env.local)",
+      "Read(**/.env.local)",
+      "Read(.env.*.local)",
+      "Read(**/.env.*.local)",
+      "Read(.env.dev)",
+      "Read(**/.env.dev)",
+      "Read(.env.prod)",
+      "Read(**/.env.prod)",
+      "Read(.env.development)",
+      "Read(**/.env.development)",
+      "Read(.env.production)",
+      "Read(**/.env.production)",
+      "Read(.env.test)",
+      "Read(**/.env.test)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/id_rsa)",
+      "Read(**/id_rsa.*)",
+      "Write(.env)",
+      "Write(**/.env)",
+      "Edit(.env)",
+      "Edit(**/.env)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(gh pr create *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node .claude/hooks/session-start.mjs" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Edit|Write|Bash|PowerShell",
+        "hooks": [
+          { "type": "command", "command": "node .claude/hooks/block-env-read.mjs", "statusMessage": "Verificando acceso a .env" }
+        ]
+      }
+    ]
+  },
+  "_comment_validation": "El allow-list son SOLO invocaciones concretas y seguras de validación. NOTA DE SEGURIDAD: nunca comodines sobre ejecutores de código arbitrario — 'node *', 'python *', 'npm run *', 'pnpm *', 'yarn *' NO van en allow porque corren cualquier archivo o script de package.json (deploy, migrate, db:reset). Y OJO: un runner de tests con args libres TAMBIÉN es un ejecutor arbitrario — 'pytest archivo.py' corre Python; 'vitest run --config x.js' / 'jest -c x.js' cargan config arbitraria; '-p plugin' / '--pdb' escalan. Por eso este template NO trae el runner de tests del repo: se añade por su nombre EXACTO una vez definido el tech-stack en spec/constitution/ (p.ej. 'Bash(pytest -q)', 'Bash(./node_modules/.bin/vitest run)'), nunca con comodín ni vía 'npx <tool>' (npx descarga-y-ejecuta paquetes de red). Si tu constitución define scripts de validación con otros nombres, añádelos UNO POR UNO por su nombre exacto. Lo que muta estado externo (push, deploy, migraciones contra prod) va en ask, nunca en allow.",
+  "_comment_deny": "deny gana sobre allow en Claude Code. Read(*) está en allow para no pedir permiso por cada archivo, pero el deny impide que secretos (.env, **/secrets/**, claves .pem/id_rsa) entren al contexto/transcript — coherente con workflow.md §6 ('secretos jamás en código, commits ni logs'). OJO con el Read de .env: NO se usa el catch-all `Read(.env.*)` porque también capturaba la PLANTILLA `.env.example` (que el agente SÍ debe mantener) — deny gana sobre allow, así que el catch-all la volvía ilegible pese a los allow. Por eso el deny de Read enumera los sufijos de secreto REALES, dejando fuera las plantillas .env.example/.sample/.template. La escritura/creación/borrado de CUALQUIER .env* real la blinda además el hook block-env-read de forma dura (ver _comment_protect_env); este deny solo cubre la tool Read. Añade aquí cualquier ruta sensible propia del repo.",
+  "_comment_hook": "SessionStart inyecta MEMORY.md + spec/constitution/roadmap.md + el bloque «Dónde vamos» de cada plan en curso/aprobado (spec/planes/*/plan.md) como additionalContext. Va SIN matcher a propósito: así se dispara en startup, resume, clear Y compact — tras vaciar el contexto, el agente vuelve a tener el estado del plan sin que nadie se lo pida. Es lo que hace posible retomar (workflow.md §7). Corre con node. Si el repo no tiene node, quita este bloque y haz que cada skill lea MEMORY.md/roadmap.md y el plan en curso como primer paso.",
+  "_comment_protect_env": "PreToolUse → block-env-read.mjs es un guard DURO (determinista, el agente no puede ignorarlo) que bloquea LEER o ESCRIBIR un .env real vía Read/Edit/Write, y frena lectores adyacentes a un .env con secretos en comandos de shell (cat/type/Get-Content/Select-String/sed/awk/grep… junto a .env). Permite .env.example/.sample/.template/.dist. OJO con el matcher: DEBE nombrar todos los tools de shell del entorno — en Windows el shell primario es PowerShell y no Bash, así que sin 'PowerShell' en el matcher un 'Get-Content .env' nunca llega al hook por más que el regex lo contemple. Es prevención de fugas/clobbers accidentales, NO una frontera de seguridad dura: un comando a medida (source, redirección <, node -e) puede rodearlo — la garantía real es no tener secretos de prod en la máquina. Si no hay node, esta protección no corre; apóyate en la regla de workflow.md §6 y en los deny Write/Edit(.env).",
+  "_comment_model": "Modelo-por-fase real vía subagentes: adversarial-review se lanza con Agent(model: opus) para máxima capacidad crítica; la implementación corre con el modelo de sesión. El override vive en la llamada Agent(...) de la skill adversarial-review, no en frontmatter."
+}

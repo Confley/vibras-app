@@ -25,6 +25,8 @@ suena.
 En planeación (septiembre de 2026). La lógica de negocio está cerrada; el código
 no ha empezado. Ver `BUSINESS_LOGIC.md`.
 
+Este repo trabaja con el harness **Urdimbre**: el método está en `AGENTS.md` y `CLAUDE.md`.
+
 ## Licencia
 
 MIT. Ver `LICENSE`.

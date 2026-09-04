@@ -1,0 +1,29 @@
+# Lo del stack (dependencias, build, artefactos) lo añade el plan que elija el stack.
+
+*.log
+logs/
+.DS_Store
+
+# Tmp
+/tmp/
+*.tmp
+*.swp
+.cache/
+
+# IDE
+.idea/
+.vscode/settings.json
+
+# El harness (Urdimbre) SÍ se versiona: el método, las skills y sobre todo la memoria
+# del proyecto viajan con el clone. Solo queda fuera lo que es de cada máquina.
+.claude/settings.local.json
+.claude/*.local.json
+
+# Config de MCP — trae tokens del environment local, cada quien arma el suyo
+.mcp.json
+
+# OJO con el orden: la negación va AL FINAL. Con `!.env.example` antes de `.env*`
+# gana la última regla y la plantilla nunca entra a git.
+.env
+.env.*
+!.env.example
